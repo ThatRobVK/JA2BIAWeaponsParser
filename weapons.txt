@@ -1,0 +1,3180 @@
+// ----------------------------------------------------------------
+// Armament: Launcher Rifle HandGun Knife None
+// GunType: Shotgun, Handgun, AssaultRifle, SniperRifle, MachineGun, SubmachineGun
+// Ammunition 357cal 375cal 38cal 45cal 50cal 120cal 4_7mm 5_45mm 5_56mm 5_70mm 7_62mm 9_mm Rocket None Cst0 Cst1 ... Cst30
+// Stance: Lying = 0, Ducking = 1, StandingHip = 2, StandingAim = 3
+// Quality: Each bullet fired lowers quality by one, weapon breaks when quality drops to 0, can be restored by repair,
+// Note: StanceFactor adds to regular stance modifier: Lying = 1.0, Ducking = 0.9, StandingHip = 0.3, StandingAim = 0.8
+// R@s: You can now use weapon ids 7001-7999. Basically all ids can be chosen freely except ammo.
+// Realistic Rebalancing Mod by Killatomate
+
+//	id  type
+
+
+//basics:
+//Base damage is multiplied by a factor of 0.8!
+//Range = accuracy, damage falloff, optimum for aim time
+//accuracy = BestRange multiplicator * WeaponAcc multiplicator * Stance multiplicator
+//acc = Range * stanceFactor0
+//hip = Range * stanceFactor2 * 0.3
+//description acc = acc / 29
+
+//RPM = aim time / single fire recoil (100 = horrible, 1000 = excellent)
+//RPM also affects Burst ROF, no effect on accuracy
+//pistol: 360-900 RPM
+//shotgun: 320-560 RPM
+//SMG: 600-1050 RPM
+//5.56 rifle: 280-800 RPM
+//7.62R rifle: 230-460 RPM
+//7.62N rifle: 175-350 RPM
+//7.62 sniper: 40-175 RPM
+//.50cal sniper: 22 RPM
+
+//Burst length = Burst accuracy
+//2x Burst = accurate
+//3x Burst = avg accuracy, 3rd bullet off-course
+//4x Burst = inaccurate, collateral damage
+//5x Burst = very inaccurate, collateral damage
+//6x Burst = 1st bullet hits, rest goes anywhere
+//7x Burst = 1st bullet hits, rest goes anywhere
+
+//Hipfire Accuracy
+//pistol 	0.188
+//pistol 3x 	0.175
+//SMG 	4x 	0.180
+//carbine 3x 	0.155
+//rifle 3x 	0.140
+//MG 5x 	0.130
+//small sniper 	0.120
+//medium sniper 0.110
+//heavy sniper 	0.090
+
+
+//================= PISTOLS ===========================
+
+// 38 S&W acc17.0 hip5.4 0.58 0.186
+Weapon (36, HandGun)
+{
+	Weight 650
+  	Price 349 //600
+	ResourceId 4205	
+	ShotEffectId 5608
+
+	// logic:
+	Damage 26
+	BestRange 16.0 //14.0
+	StanceFactor 0 1.05 //1
+	StanceFactor 1 1.14 //0.9
+	StanceFactor 2 1.13 //0.9
+	StanceFactor 3 1.20 //0.9
+	ClipSize 6
+	Ammunition 38cal
+	Quality 800 //400
+	RPM 780 //450
+  	GunType Handgun
+	Icon 0 112 200 112 40
+	Picture 0 8 0 2
+	
+	
+	DisableAttachments
+	AnchorPoint 0.0 0.5 -1.9
+	
+	Deliverable
+}
+
+// Glock 17 acc17.5 hip5.0 0.60 0.172
+Weapon (39, HandGun)
+{
+	Weight 620
+  	Price 1299 //1700
+	ResourceId 4289	
+	ShotEffectId 5611
+
+	// logic:
+	Damage 27 //21
+	BestRange 19.0 //25.0
+	StanceFactor 0 0.92 //1
+	StanceFactor 1 0.99
+	StanceFactor 2 0.89 //0.9
+	StanceFactor 3 1.04
+	ClipSize 17 //15
+	GunType Handgun
+	Ammunition 9_mm
+	Quality 800
+	RPM 680 //370
+
+	Icon 0 224 200 112 40
+	Picture 0 0 9 2
+	
+	AnchorPoint 0.0 0.5 -1.9
+	
+	Deliverable
+}
+
+// Glock 18 acc 17.5 hip5.0 0.60 0.165
+Weapon (40, HandGun)
+{
+	Weight 640
+  	Price 1799 //1780
+	ResourceId 4290	
+	ShotEffectId 5612
+
+	// logic:
+	Damage 27 //21
+	BestRange 18.0 //15.0
+	StanceFactor 0 0.91 //1
+	StanceFactor 1 0.98 //1
+	StanceFactor 2 0.84 //0.9
+	StanceFactor 3 1.03 //1
+	Burst 4 //3
+	Auto 15 //15
+	ClipSize 33 //15
+	GunType Handgun
+	Ammunition 9_mm
+	Quality 700 //750
+	RPM 680 //900
+
+	Icon 0 0 240 112 40
+	Picture 0 6 7 2
+	
+	AnchorPoint 0.0 0.5 -1.9
+	
+	Deliverable
+}
+
+// Beretta 92F acc18.0 hip5.1 0.62 0.176
+Weapon (41, HandGun)
+{
+	Weight 950
+  	Price 1399 //1910
+	ResourceId 4270	
+	ShotEffectId 5613
+
+	// logic:
+	Damage 27 //23
+	BestRange 19.0 //23.0
+	StanceFactor 0 0.95 //1
+	StanceFactor 1 1.01 //1
+	StanceFactor 2 0.90 //0.9
+	StanceFactor 3 1.05 //1
+	ClipSize 15
+	Ammunition 9_mm
+	Quality 800 //650
+	RPM 700 //650
+  	GunType Handgun
+	Icon 0 336 200 112 40
+	Picture 1 5 3 2
+	
+	AnchorPoint 0.0 0.5 -2.1
+	
+	Deliverable
+}
+
+// Beretta 93R acc18.3 hip4.9 0.62 0.165
+Weapon (42, HandGun)
+{
+	Weight 1170
+  	Price 1899 //1700
+	ResourceId 4271	
+	ShotEffectId 5614
+
+	// logic:
+	Damage 27 //23
+	BestRange 18.0 //13.0
+	StanceFactor 0 0.94 //1
+	StanceFactor 1 1.00 //1
+	StanceFactor 2 0.84 //0.9
+	StanceFactor 3 1.04 //1
+	Burst 3 //5
+	Auto 15
+	ClipSize 20 //15
+	GunType Handgun
+	Ammunition 9_mm
+	Quality 650 //600
+	RPM 660 //1100
+
+	Icon 0 448 200 112 40
+	Picture 1 7 3 2
+	
+	AnchorPoint 0.0 0.5 -2.1
+	
+	Deliverable
+}
+
+// HK USP45 acc17.0 hip4.9 0.58 0.168
+Weapon (5, HandGun)
+{
+	Weight 785
+  	Price 1649 //1250
+	ResourceId 437	
+	ShotEffectId 3963
+
+	// logic:
+	Damage 34 //33
+	BestRange 17.0 //18.0
+	StanceFactor 0 1.00 //1
+	StanceFactor 1 1.07 //1
+	StanceFactor 2 0.96 //0.8
+	StanceFactor 3 1.13 //0.9
+	ClipSize 12 //7
+	GunType Handgun
+	Ammunition 45cal
+	Quality 900
+	RPM 620 //480
+	Icon 0 224 0 112 40
+	Picture 0 3 0 2
+	
+	
+	AnchorPoint 0.0 0.5 -1.8
+	
+	Deliverable
+	
+}
+
+// FN Fiveseven acc19.1 hip5.3 0.65 0.182
+Weapon (55, HandGun)
+{
+	Weight 590
+  	Price 2599 //2800
+	ResourceId 5594
+	ShotEffectId 3963
+
+	// logic:
+	Damage 22 //35
+	BestRange 21.0 //24.0
+	StanceFactor 0 0.99 //1
+	StanceFactor 1 1.07 //1
+	StanceFactor 2 0.87 //0.8
+	StanceFactor 3 1.15 //0.9
+	ClipSize 20
+	Ammunition 5_70mm
+	Quality 1100 //900
+	RPM 840 //600
+	GunType Handgun
+	Icon 0 560 160 112 40
+	Picture 0 8 1 2
+		
+	AnchorPoint 0.0 0.5 -1.8
+	
+	Deliverable
+	
+}
+
+// FN Barracuda acc18.6 hip4.9 0.64 0.170
+Weapon (37, HandGun)
+{
+	Weight 1190
+  	Price 1599 //2000
+	ResourceId 4161	
+	ShotEffectId 5609
+
+	// logic:
+	Damage 30 //50
+	BestRange 21.0 //15.0
+	StanceFactor 0 0.90 //1
+	StanceFactor 1 0.96 //0.9
+	StanceFactor 2 0.79 //0.4
+	StanceFactor 3 1.01 //0.8
+	ClipSize 6
+	GunType Handgun
+	Ammunition 357cal
+	Quality 850 //670
+	RPM 500 //320
+
+  	Icon 0 896 160 112 40
+  	Picture 1 6 0 2
+
+  	DisableAttachments
+  	AnchorPoint 0.0 0.7 -3.7
+  	
+  	Deliverable
+}
+
+// Desert Eagle acc18.2 hip4.8 0.63 0.165
+Weapon (38, HandGun)
+{
+	Weight 1800
+  	Price 1899 //1900
+	ResourceId 4204	
+	ShotEffectId 5610
+
+	// logic:
+	Damage 30 //49
+	BestRange 21.0 //13.0
+	StanceFactor 0 0.87 //1
+	StanceFactor 1 0.93 //0.9
+	StanceFactor 2 0.77 //0.5
+	StanceFactor 3 0.98 //0.8
+	ClipSize 9 //7
+	GunType Handgun
+	Ammunition 357cal
+	Quality 600 //550
+	RPM 500 //360
+
+	Icon 0 0 200 112 40
+	Picture 1 8 0 2
+
+  	DisableAttachments	
+	AnchorPoint 0.0 0.4 -2.5
+	
+	Deliverable
+}
+
+// Automag acc20.5 hip4.5 0.71 0.154
+Weapon (43, HandGun)
+{
+	Weight 1620
+  	Price 2499 //2400
+	ResourceId 4291
+	ShotEffectId 5615
+
+	// logic:
+	Damage 33 //51
+	BestRange 24.0 //20.0
+	StanceFactor 0 0.84 //1
+	StanceFactor 1 0.88 //0.9
+	StanceFactor 2 0.62 //0.7
+	StanceFactor 3 0.90 //0.7
+	GunType Handgun
+	ClipSize 8 //5
+	Ammunition 7_62mm_Nato
+	Quality 300 //300
+	RPM 380 //300
+
+    Icon 0 560 200 112 40
+    Picture 1 3 3 2
+
+  	DisableAttachments    
+    AnchorPoint 0.0 0.6 -3.5
+    
+    Deliverable
+}
+
+
+//================= SHOTGUNS ============================
+
+// M870 acc14.6 hip3.8 0.50(+0.45) 0.132(+0.045)
+Weapon (33, Rifle)
+{
+	Weight 3200
+  	Price 1699 //2600
+	ResourceId 3646
+	ShotEffectId 3984
+
+	// logic:
+	Damage 74 //85
+	BestRange 16.0 //19.0
+	StanceFactor 0 0.92 //0.8
+	StanceFactor 1 0.94 //0.65
+	StanceFactor 2 0.80 //0.6
+	StanceFactor 3 0.95 //0.65
+	Spread 5.2 //5.4 //8
+	ClipSize 7
+	GunType Shotgun
+	Ammunition 120cal
+	Quality 800
+	RPM 340 //240
+	
+	Icon 0 112 80 112 40
+	Picture 0 6 4 3
+
+  	DisableAttachments    	
+	AnchorPoint 0.0 0.7 -0.40
+	
+	Deliverable
+}
+
+// FN SLP TACTICAL acc16.1 hip4.1 0.56(+0.40) 0.140(+0.035)
+Weapon (20, Rifle)
+{
+
+	Weight 3850
+  	Price 3199 //3000
+	ResourceId 3361
+	ShotEffectId 3975
+
+	// logic:
+	Damage 76 //90
+	BestRange 17.0 //24.0
+	StanceFactor 0 0.94 //0.8
+	StanceFactor 1 0.96 //0.75
+	StanceFactor 2 0.80 //0.7
+	StanceFactor 3 0.96 //0.8
+	Spread 4.8 //7
+	ClipSize 7 //6
+	GunType Shotgun
+	Ammunition 120cal
+	Quality 850 //750
+	RPM 420 //240
+	
+	Icon 0 0 120 112 40
+	Picture 0 2 9 3
+	
+	AnchorPoint 0.0 0.8 -0.8
+	
+	Deliverable
+}
+
+// SPAS-15 acc15.6 hip3.8 0.54(+0.45) 0.132(+0.045)
+Weapon (44, Rifle)
+{
+	Weight 3900
+  	Price 2899 //2850
+	ResourceId 3741
+	ShotEffectId 5598
+
+	// logic:
+	Damage 70 //60
+	BestRange 17.0 //20.0
+	StanceFactor 0 0.92 //1
+	StanceFactor 1 0.94 //0.9
+	StanceFactor 2 0.75 //0.75
+	StanceFactor 3 0.94 //0.8
+	Spread 5.0 //6
+  	GunType Shotgun
+	ClipSize 8 //7
+	Ammunition 120cal
+	Quality 500
+	RPM 520 //600
+	
+	Icon 0 784 0 112 40
+	Picture 0 6 2 3
+	
+	AnchorPoint 0.0 1.1 0.3 //0.0 1.0 -0.2
+	
+	Deliverable
+}
+
+// CAWS acc18.7 hip4.5 0.67(+0.15) 0.154(+0.025)
+Weapon (47, Rifle)
+{
+	Weight 3700
+  	Price 7499 //4050
+	ResourceId 3719
+	ShotEffectId 5601
+
+	// logic:
+	Damage 70 //75
+	BestRange 23.0 //16.0
+	StanceFactor 0 0.83 //1
+	StanceFactor 1 0.86 //0.9
+	StanceFactor 2 0.64 //0.8
+	StanceFactor 3 0.85 //0.8
+	Spread 1.9 //5
+	Burst 2 //3
+	Auto 10
+	ClipSize 10
+	GunType Shotgun
+	Ammunition 120cal
+	Quality 800
+	RPM 550 //600
+	
+	Icon 0 560 120 112 40
+	Picture 0 3 8 3
+	
+	AnchorPoint 0.0 1.1 0.1
+	
+	Deliverable
+}
+
+//================= SMGs ================================
+
+
+// TEC9 acc14.5 hip4.5 0.50 0.154
+Weapon (28, HandGun)
+{
+	Weight 1230
+  	Price 949 //1800
+	ResourceId 3462
+	ShotEffectId 5607
+	
+	// logic:	
+	Damage 25 //19
+	BestRange 17.0 //17.0
+	StanceFactor 0 0.85 //0.8
+	StanceFactor 1 0.90 //0.8
+	StanceFactor 2 0.88 //0.65
+	StanceFactor 3 0.95 //0.7
+	Burst 5 //6
+	Auto 30
+	ClipSize 30
+	Ammunition 9_mm
+	Quality 600 //350
+	RPM 950 //900
+	GunType SubmachineGun
+	Icon 0 560 0 112 40
+	Picture 0 6 1 2
+
+  	DisableAttachments    	
+	AnchorPoint 0.0 0.7 -2.9
+	
+	Deliverable
+}
+
+// MP5K acc18.6 hip5.5 0.64 0.188
+Weapon (26, HandGun)
+{
+	Weight 2780
+  	Price 2679 //2800
+	ResourceId 3113
+	ShotEffectId 5605
+	
+	// logic:	
+	Damage 28 //24
+	BestRange 20.0 //19.0
+	StanceFactor 0 0.94 //1
+	StanceFactor 1 1.00 //0.95
+	StanceFactor 2 0.91 //0.85
+	StanceFactor 3 1.05 //0.95
+	Burst 5
+	Auto 30
+	ClipSize 30
+	Ammunition 9_mm
+	RPM 880 //900
+	Quality 1200 //950
+	GunType SubmachineGun
+	Icon 0 448 40 112 40
+	Picture 0 8 7 2
+	
+  AnchorPoint 0.0 0.8 -3.5
+  
+  Deliverable
+}
+
+// MP5SD acc18.0 hip5.5 0.62 0.188
+Weapon (54, Rifle)
+{
+	Weight 2800
+	Price 2989 //2900
+	ResourceId 2988
+	ShotEffectId 5616
+
+	// logic:
+	Damage 27 //25
+	BestRange 17.0 //17.0
+	StanceFactor 0 1.06 //1
+	StanceFactor 1 1.12 //0.95
+	StanceFactor 2 1.07 //0.7
+	StanceFactor 3 1.18 //0.9
+	Burst 4 //5
+	Auto 30
+	ClipSize 30
+	GunType SubmachineGun
+	Ammunition 9_mm
+	Quality 800 //1000
+	RPM 950 //700
+	
+	Icon 0 560 40 112 40
+	Picture 1 7 8 3
+	
+	AnchorPoint 0.0 1.3 -0.5 //0.0 1.3 -0.1
+	
+	Deliverable
+}
+
+// MAC10 45ACP acc16.5 hip4.9 0.57 0.168
+Weapon (27, HandGun)
+{
+	Weight 2840
+  	Price 2349 //2500
+	ResourceId 3426
+	ShotEffectId 5606
+	
+	// logic:	
+	Damage 34 //25
+	BestRange 17.0 //18.0
+	StanceFactor 0 0.97 //0.9
+	StanceFactor 1 1.03 //0.85
+	StanceFactor 2 0.96 //0.8
+	StanceFactor 3 1.07 //0.8
+	Burst 5
+	Auto 30
+	ClipSize 30
+	Ammunition 45cal
+	Quality 750 //300
+	RPM 900 //1100
+	GunType SubmachineGun
+	Icon 0 0 80 112 40
+	Picture 0 8 3 2
+	
+	AnchorPoint 0.0 0.5 -1.6
+	
+	Deliverable
+}
+
+// THOMPSON acc18.9 hip4.7 0.65 0.162
+Weapon (29, Rifle)
+{
+	Weight 4900
+  	Price 2399 //2300
+	ResourceId 3610
+	ShotEffectId 3980
+	
+	// logic:	
+	Damage 35 //23
+	BestRange 18.0 //20.0
+	StanceFactor 0 1.05 //0.8
+	StanceFactor 1 1.10 //0.7
+	StanceFactor 2 0.87 //0.5
+	StanceFactor 3 1.12 //0.65
+	Burst 3 //4
+	Auto 30
+	ClipSize 30
+	GunType SubmachineGun
+	Ammunition 45cal
+	Quality 800 //400
+	RPM 740 //800
+	
+	Icon 0 448 0 112 40
+	Picture 0 3 1 3
+
+  	DisableAttachments    	
+	AnchorPoint 0.0 1.1 -0.1
+
+	Deliverable
+}
+
+// Type85 acc18.9 hip5.1 0.67 0.178
+Weapon (16, Rifle)
+{
+	Weight 1900
+	Price 2799 //2300
+	ResourceId 3476
+	ShotEffectId 3972
+
+	// logic:
+	Damage 25 //23
+	BestRange 23.0 //16.0
+	StanceFactor 0 0.85 //0.9
+	StanceFactor 1 0.88 //0.7
+	StanceFactor 2 0.78 //0.5
+	StanceFactor 3 0.92 //0.7
+	Burst 4 //6
+	ClipSize 30
+	GunType SubmachineGun
+	Ammunition Cst1 //7_62mm
+	Quality 900 //800
+	RPM 780 //600
+	
+	Icon 0 336 0 112 40
+	Picture 0 0 1 3
+
+	AnchorPoint 0.0 1.1 -0.25 //0.0 1.2 0.2
+
+	Deliverable
+}
+
+// FN P90 acc21.8 hip5.5 0.75 0.180
+Weapon (25, HandGun)
+{
+	Weight 2540
+  	Price 5299 //4400
+	ResourceId 3219
+	ShotEffectId 5596
+	
+	// logic:	
+	Damage 22 //27
+	BestRange 24.0 //18.0
+	StanceFactor 0 0.92 //0.8
+	StanceFactor 1 0.96 //0.8
+	StanceFactor 2 0.72 //0.7
+	StanceFactor 3 0.99 //0.75
+	Burst 4 //5
+	Auto 50
+	ClipSize 50
+	GunType SubmachineGun
+	Ammunition 5_70mm
+	Quality 1200 //800
+	RPM 950 //900
+	Icon 0 336 40 112 40
+	Picture 0 8 9 2
+	
+	AnchorPoint 0.0 0.5 -1.6 //sights AnchorPoint 0.0 1.2 -0.2
+	
+	Deliverable
+}
+
+// AKS-74U acc22.6 hip4.8 0.78 0.178
+Weapon (24, Rifle)
+{
+	Weight 2710
+  	Price 3179 //3900
+	ResourceId 2992
+	ShotEffectId 3979
+	
+	// logic:	
+	Damage 21 //30
+	BestRange 26.0 //20.0
+	StanceFactor 0 0.87 //0.95
+	StanceFactor 1 0.90 //0.9
+	StanceFactor 2 0.66 //0.7
+	StanceFactor 3 0.93 //0.9
+	Burst 4
+	Auto 30
+	ClipSize 30
+	GunType SubmachineGun
+	Ammunition 5_45mm
+	Quality 1300 //1100
+	RPM  800 //735
+	
+	Icon 0 896 120 112 40
+	Picture 1 0 4 3
+	
+	AnchorPoint 0.0 1.2 -0.4 //0.0 1.2 -1.9
+	
+	Deliverable
+	
+}
+
+// HK53A2 acc24.3 hip5.2 0.84 0.178
+Weapon (9, Rifle)
+{
+	Weight 3080
+	Price 3299 //2900
+	ResourceId 2987	
+	ShotEffectId 3965
+
+	// logic:
+	Damage 21 //27
+	BestRange 27.0 //24.0
+	StanceFactor 0 0.90 //1
+	StanceFactor 1 0.94 //0.95
+	StanceFactor 2 0.63 //0.7
+	StanceFactor 3 0.95 //0.9
+	Burst 4 //3
+	Auto 30
+	ClipSize 30
+        GunType SubmachineGun
+	Ammunition 5_56mm
+	Quality 1300 //1000
+	RPM 780 //800
+	
+	Icon 0 672 40 112 40
+	Picture 0 6 6 3
+	
+	AnchorPoint 0.0 1.3 -0.1
+	
+	Deliverable
+}
+
+
+//================= 5.56 RIFLES ===========================
+
+
+// SIG 552 Commando acc27.3 hip4.8 0.94 0.164
+Weapon (13, Rifle)
+{
+	Weight 3100
+  	Price 4199 //3700
+	ResourceId 3329
+	ShotEffectId 3969
+
+	// logic:
+	Damage 21 //27
+	BestRange 28.0 //26.0
+	StanceFactor 0 0.97 //1
+	StanceFactor 1 1.01 //0.95
+	StanceFactor 2 0.56 //0.75
+	StanceFactor 3 1.02 //0.9
+	Burst 3
+	Auto 30
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 1300 //900
+	RPM 740 //510
+	
+	Icon 0 0 40 112 40
+	Picture 0 3 3 3
+	
+	AnchorPoint 0.0 1.0 -0.3
+	
+	Deliverable
+}
+
+// CTAR-21 Bullpub 0.98 0.158
+Weapon (15, Rifle)
+{
+	Weight 2950
+  	Price 5549 //5600
+	ResourceId 3606
+	ShotEffectId 3971
+
+	// logic:
+	Damage 22 //27
+	BestRange 32.0 //36.0
+	StanceFactor 0 0.88 //0.9
+	StanceFactor 1 0.88 //0.8
+	StanceFactor 2 0.48 //0.6
+	StanceFactor 3 0.87 //0.8
+	Burst 4 //5
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	RPM 720 //700
+	Quality 800 //650
+	
+	Icon 0 672 0 112 40
+	Picture 0 0 2 3
+	
+	AnchorPoint 0.0 1.2 0.2 //0.0 1.2 0.4
+	
+	Deliverable
+}
+
+// M4 Carbine acc29.0 hip4.3 1.03 0.150
+Weapon (2, Rifle)
+{
+	Weight 3400 //4000
+	Price 3899 //3800
+	ResourceId 190	
+	ShotEffectId 536
+	
+	// logic:
+	Damage 22 //29
+	BestRange 34.0 //23.0
+	StanceFactor 0 0.88 //1
+	StanceFactor 1 0.86 //0.88
+	StanceFactor 2 0.43 //0.65
+	StanceFactor 3 0.85 //0.8
+	Burst 4
+	Auto 30
+	RPM 680 //500
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 850 //650
+	
+	Icon 0 560 80 112 40
+	Picture 1 7 2 3
+	
+	AnchorPoint 0.0 1.1 -0.2 //0.0 1.1 0.25
+	
+	Deliverable
+}
+
+// FAMAS F1 0.98 0.152
+Weapon (10, Rifle)
+{
+	Weight 3620
+  	Price 3799 //3400
+	ResourceId 3431
+	ShotEffectId 3966
+
+	// logic:
+	Damage 23 //29
+	BestRange 35.0 //23.0
+	StanceFactor 0 0.81
+	StanceFactor 1 0.82
+	StanceFactor 2 0.42
+	StanceFactor 3 0.81
+	Burst 3
+	ClipSize 25 //30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 750
+	RPM 700 //900
+	
+	Icon 0 112 120 112 40
+	Picture 1 0 1 3
+	
+	AnchorPoint 0.0 0.9 0.2
+	
+	Deliverable
+}
+
+// L85 acc32.3 hip4.1 1.11 0.157
+Weapon (35, Rifle)
+{
+	Weight 3600
+  	Price 4499 //4890
+	ResourceId 3653
+	ShotEffectId 3970 //5597
+
+	// logic:
+	Damage 23 //28
+	BestRange 38.0 //37.0
+	StanceFactor 0 0.84 //0.85
+	StanceFactor 1 0.87 //0.7
+	StanceFactor 2 0.40 //0.3
+	StanceFactor 3 0.86 //0.65
+	Burst 4 //5
+	Auto 30
+	GunType AssaultRifle
+	ClipSize 30
+	Ammunition 5_56mm
+	Quality 800 //700
+	RPM 580 //310
+	
+	Icon 0 336 120 112 40
+	Picture 1 3 1 3
+	
+	AnchorPoint 0.0 1.0 0.4
+	
+	Deliverable
+}
+
+// M16 acc34.3 hip4.1 1.18 0.141
+Weapon (6, Rifle)
+{
+	Weight 3700 //3400
+  	Price 4499 //5200
+	ResourceId 438	
+	ShotEffectId 3964 //537
+
+	// logic:
+	Damage 23 //29
+	BestRange 39.0 //40.0
+	StanceFactor 0 0.88 //0.9
+	StanceFactor 1 0.89 //0.8
+	StanceFactor 2 0.35 //0.4
+	StanceFactor 3 0.89 //0.7
+	Burst 3
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	RPM 580 //450
+	Quality 750 //450
+	
+	Icon 0 336 80 112 40
+	Picture 1 4 2 3
+	
+	AnchorPoint 0.0 1.1 -0.2 //0.0 1.0 0.0
+	
+	Deliverable
+}
+
+// G41 acc36.0 hip4.3 1.24 0.148
+Weapon (8, Rifle)
+{
+	Weight 4100
+ 	Price 5599 //5500
+	ResourceId 2985	
+	ShotEffectId 3964
+
+	// logic:
+	Damage 24 //30
+	BestRange 40.0 //38.0
+	StanceFactor 0 0.90 //0.85
+	StanceFactor 1 0.91 //0.7
+	StanceFactor 2 0.36 //0.25
+	StanceFactor 3 0.91 //0.6
+	Burst 3
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	RPM 540 //510
+	Quality 1200 //1000
+	
+	Icon 0 784 40 112 40
+	Picture 0 0 7 3
+	
+	AnchorPoint 0.0 1.3 -0.2 //0.0 1.3 0.0
+	
+	Deliverable
+}
+
+
+// -----------------------------DLC-----------------------------
+
+// SCAR-L Urban acc25.0 hip4.7 0.95 0.161
+Weapon (70, Rifle)
+{
+	Weight 3300 //4000
+	Price 3899 //0
+	ResourceId 6071	
+	ShotEffectId 538
+	
+
+	// logic:
+	Damage 22 //28
+	BestRange 30.0 //25.0
+	StanceFactor 0 0.92 //1
+	StanceFactor 1 0.95 //0.9
+	StanceFactor 2 0.52 //0.65
+	StanceFactor 3 0.96 //0.8
+	Burst 3 //4
+	Auto 30
+	RPM 720 //625
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 1100 //850
+	
+	Icon 0 448 800 112 40
+	Picture 8 3 4 3
+
+	Deliverable	
+	AnchorPoint 0.0 0.95 -0.05 //0.0 1.1 0.25
+}
+
+// SCAR-L Desert acc25.0 hip4.7 0.95 0.161
+Weapon (71, Rifle)
+{
+	Weight 3300 //4000
+	Price 3599 //0
+	ResourceId  6072	
+	ShotEffectId 538
+	
+
+	// logic:
+	Damage 22 //28
+	BestRange 30.0 //25.0
+	StanceFactor 0 0.92 //1
+	StanceFactor 1 0.95 //0.9
+	StanceFactor 2 0.52 //0.65
+	StanceFactor 3 0.96 //0.8
+	Burst 3 //4
+	Auto 30
+	RPM 720 //625
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 1100 //850
+	
+	Icon 0 336 800 112 40
+	Picture 8 0 4 3
+	
+	AnchorPoint 0.0 0.95 -0.05 //0.0 1.1 0.25
+	Deliverable
+}
+
+// CAR-15 Commando Urban acc23.7 hip4.8 0.82 0.165
+Weapon (72, Rifle)
+{
+	Weight 2300 //4000
+	Price 3099 //0
+	ResourceId 6069	
+  ShotEffectId 536
+	
+
+	// logic:
+	Damage 21 //26
+	BestRange 26.0 //22.0
+	StanceFactor 0 0.91 //1
+	StanceFactor 1 0.94 //0.9
+	StanceFactor 2 0.62 //0.65
+	StanceFactor 3 0.96 //0.8
+	Burst 4 //4
+	Auto 30
+	RPM 900 //900
+	ClipSize 20 //30
+	GunType SubmachineGun
+	Ammunition 5_56mm
+	Quality 850 //750
+	
+	Icon 0 672 800 112 40
+	Picture 8 2 3 3
+
+	Deliverable		
+	AnchorPoint 0.0 1.36 -0.05 //0.0 1.1 0.25
+}
+
+// CAR-15 Commando Night acc23.7 hip4.8 0.82 0.165
+Weapon (73, Rifle)
+{
+	Weight 2300 //4000
+	Price 2799 //0
+	ResourceId 6070	
+	ShotEffectId 536
+	
+
+	// logic:
+	Damage 21 //26
+	BestRange 26.0 //22.0
+	StanceFactor 0 0.91 //1
+	StanceFactor 1 0.94 //0.9
+	StanceFactor 2 0.62 //0.65
+	StanceFactor 3 0.96 //0.8
+	Burst 4 //4
+	Auto 30
+	RPM 900 //900
+	ClipSize 20 //30
+	GunType SubmachineGun
+	Ammunition 5_56mm
+	Quality 850 //750
+	
+	Icon 0 560 800 112 40
+	Picture 8 5 3 3
+	
+	AnchorPoint 0.0 1.36 -0.05 //0.0 1.1 0.25
+	Deliverable
+}
+
+//================= 4.7mm RIFLES ==========================
+
+// HK G11 K2 acc41.4 hip4.8 1.30 0.150
+Weapon (34, Rifle)
+{
+	Weight 3600
+  	Price 12999 //9600
+	ResourceId 3686
+	ShotEffectId 3985
+
+	// logic:
+	Damage 24 //40
+	BestRange 31.0 //47.0
+	StanceFactor 0 1.22 //0.9
+	StanceFactor 1 1.18 //0.9
+	StanceFactor 2 0.47 //0.4
+	StanceFactor 3 1.15 //0.7
+	Burst 3
+	GunType AssaultRifle
+	ClipSize 50
+	Ammunition 4_7mm
+	Quality 1700 //600
+	RPM 850 //950 //1000
+	
+	Icon 0 784 80 112 40
+	Picture 0 3 7 3
+	
+	AnchorPoint 0.0 1.4 0.0
+	
+	Deliverable
+}
+
+//================= 7.62 R RIFLES =========================
+
+// AK47 acc25.5 hip3.7 0.88 0.137
+Weapon (1, Rifle)
+{
+	Weight 4300
+	Price 3349 //3720
+	ResourceId 271	
+	ShotEffectId 3981 //340
+	
+	// logic:	
+	Damage 27 //30
+	BestRange 34.0 //33.0
+	StanceFactor 0 0.75 //0.8
+	StanceFactor 1 0.74 //0.55
+	StanceFactor 2 0.39 //0.3
+	StanceFactor 3 0.72 //0.5
+	Burst 3
+	Auto 30
+	RPM 440 //400
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 7_62mm //5.45
+	Quality 1400 //1200
+	
+	Icon 0 112 160 112 40
+	Picture 1 3 4 3
+	
+	AnchorPoint 0.0 1.1 -0.4 //0.0 1.1 0.1
+	
+	Deliverable
+}
+
+// AKM acc26.4 hip3.8 0.91 0.147
+Weapon (30, Rifle)
+{
+	Weight 3100
+  	Price 3499 //4000
+	ResourceId 2991
+	ShotEffectId 3981
+
+	// logic:
+	Damage 27 //31
+	BestRange 34.0 //30.0
+	StanceFactor 0 0.78 //0.65
+	StanceFactor 1 0.77 //0.5
+	StanceFactor 2 0.42 //0.3
+	StanceFactor 3 0.74 //0.4
+	Burst 3
+	Auto 30
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 7_62mm
+	Quality 1350 //1150
+	RPM 460 //600
+	
+	Icon 0 0 160 112 40
+	Picture 1 6 4 3
+	
+	AnchorPoint 0.0 1.2 -0.5
+	
+	Deliverable
+}
+
+//================= 7.62 NATO RIFLES =======================
+
+// FAL acc31.0 hip3.8 1.08 0.130
+Weapon (11, Rifle)
+{
+	Weight 4250
+  	Price 4639 //5000
+	ResourceId 3129
+	ShotEffectId 3967
+
+	// logic:
+	Damage 31 //32
+	BestRange 43.0 //42.0
+	StanceFactor 0 0.73 //0.7
+	StanceFactor 1 0.69 //0.5
+	StanceFactor 2 0.29 //0.3
+	StanceFactor 3 0.60 //0.4
+	Burst 2 //3
+	ClipSize 20
+	GunType AssaultRifle
+	Ammunition 7_62mm_Nato
+	Quality 950 //850
+	RPM 340 //290
+	
+	Icon 0 224 120 112 40
+	Picture 1 3 0 3
+	
+	AnchorPoint 0.0 1.2 -0.4 //0.0 1.0 -0.2
+	
+	Deliverable
+}
+
+// G3A4 acc34.3 hip3.7 1.18 0.127
+Weapon (12, Rifle)
+{
+	Weight 4700 //4380
+  	Price 5849 //4050
+	ResourceId 3127
+	ShotEffectId 3968
+
+	// logic:
+	Damage 32 //34
+	BestRange 44.0 //31.0
+	StanceFactor 0 0.78 //0.7
+	StanceFactor 1 0.73 //0.6
+	StanceFactor 2 0.28 //0.1
+	StanceFactor 3 0.70 //0.3
+	Burst 2
+	Auto 20
+	ClipSize 20
+	GunType AssaultRifle
+	Ammunition 7_62mm_Nato
+	Quality 1400
+	RPM 320 //370
+	
+	Icon 0 896 80 112 40
+	Picture 0 0 8 3
+	
+	AnchorPoint 0.0 1.2 -0.5
+	
+	Deliverable
+}
+
+// SCAR-H acc32.3 hip4.0 1.06 0.134
+Weapon (3, Rifle)
+{
+	Weight 3620
+	Price 5589 //4100
+	ResourceId 191	
+	ShotEffectId 538
+
+	// logic:
+	Damage 30 //31
+	BestRange 37.0 //27.0
+	StanceFactor 0 0.83 //0.9
+	StanceFactor 1 0.82 //0.8
+	StanceFactor 2 0.35 //0.6
+	StanceFactor 3 0.80 //0.7
+	Burst 3 //4
+	ClipSize 20
+	GunType AssaultRifle
+	Ammunition 7_62mm_Nato
+	Quality 1000 //800
+	RPM 400 //350
+
+	Icon 0 112 40 112 40
+	Picture 0 5 9 3
+	
+	AnchorPoint 0.0 1.2 -0.05 //0.0 1.2 0.1
+	
+	Deliverable
+}
+
+
+//================= MGs ====================================
+
+// RPK74 0.87 0.133
+Weapon (19, Rifle)
+{
+	Weight 4700
+  	Price 4399 //6500
+	ResourceId 2993
+	ShotEffectId 5595
+
+	// logic:
+	Damage 23 //33
+	BestRange 38.0 //49.0
+	StanceFactor 0 0.66 //0.55
+	StanceFactor 1 0.54 //0.3
+	StanceFactor 2 0.34 //0.1
+	StanceFactor 3 0.39 //0.25
+	Burst 6 //5
+	ClipSize 45
+	GunType MachineGun
+	Ammunition 5_45mm
+	Quality 1300 //1200
+	RPM 720 //800
+	
+	Icon 0 224 40 112 40
+	Picture 0 3 4 3
+	
+	
+	AnchorPoint 0.0 1.15 -0.35 //0.0 1.2 -0.2
+	
+	Deliverable
+}
+
+// FN Minimi 0.89 0.126
+Weapon (17, Rifle)
+{
+	Weight 7100
+  	Price 5199 //7000
+	ResourceId 3128
+	ShotEffectId 3973
+
+	// logic:
+	Damage 23 //26
+	BestRange 36.0 //35.0
+	StanceFactor 0 0.72 //0.65
+	StanceFactor 1 0.56 //0.4
+	StanceFactor 2 0.34 //0.15
+	StanceFactor 3 0.35 //0.3
+	Burst 7 //10
+	Auto 50
+	ClipSize 100 //80
+	GunType MachineGun
+	Ammunition 5_56mm
+	RPM 780 //1000
+	Quality 1000 //900
+	
+	Icon 0 896 0 112 40
+	Picture 1 0 0 3
+	
+	AnchorPoint 0.0 1.2 -0.0 //0.0 1.3 -1.3
+	
+	Deliverable
+}
+
+// AUG HBAR acc27.2 hip4.1 0.94 0.132
+Weapon (14, Rifle)
+{
+	Weight 4000
+  	Price 5339 //5900
+	ResourceId 3203
+	ShotEffectId 3970
+
+	// logic:
+	Damage 23 //29
+	BestRange 40.0 //47.0
+	StanceFactor 0 0.68 //0.65
+	StanceFactor 1 0.62 //0.55
+	StanceFactor 2 0.32 //0.2
+	StanceFactor 3 0.60 //0.5
+	Burst 4
+	Auto 42 //30
+	ClipSize 42 //30
+	GunType MachineGun
+	Ammunition 5_56mm
+	Quality 1100 //700
+	RPM 740
+	
+	Icon 0 896 840 112 40 //0 784 120 112 40
+	Picture 8 4 9 3 //0 3 2 3
+	
+	AnchorPoint 0.0 1.3 0.35
+	
+	Deliverable
+}
+
+// HK21E acc24.5 hip3.1 0.88 0.110
+Weapon (18, Rifle)
+{
+	Weight 9300
+  	Price 8899 //11000
+	ResourceId 3124
+	ShotEffectId 3974
+
+	// logic:
+	Damage 32 //35
+	BestRange 43.0 //49.0
+	StanceFactor 0 0.59 //0.4
+	StanceFactor 1 0.42 //0.2
+	StanceFactor 2 0.24 //0.05
+	StanceFactor 3 0.28 //0.1
+	Burst 5 //8
+	Auto 50 //40
+	ClipSize 50 //40
+	GunType MachineGun
+	Ammunition 7_62mm_Nato
+	Quality 1200 //1000
+	RPM 520 //600
+	
+	Icon 0 672 80 112 40
+	Picture 0 6 8 3
+	
+	AnchorPoint 0.0 1.3 -0.5
+	
+	Deliverable
+}
+
+//================= SNIPER RIFLES ==========================
+
+// SKS 1.26 0.126
+Weapon (46, Rifle)
+{
+	Weight 3850
+  	Price 3399 //2800
+	ResourceId 4049
+	ShotEffectId 5600
+
+	// logic:
+	Damage 30 //31
+	BestRange 42.0 //30.0
+	StanceFactor 0 0.87 //0.8
+	StanceFactor 1 0.75 //0.9
+	StanceFactor 2 0.29 //0.4
+	StanceFactor 3 0.72 //0.8
+	ClipSize 10
+	GunType SniperRifle
+	Ammunition 7_62mm
+	Quality 1300
+	RPM 220 //370
+
+	Icon 0 784 200 112 40
+	Picture 0 0 3 3
+	
+	AnchorPoint 0.0 1.0 -0.7
+	
+	Deliverable
+}
+
+// Mini-14 acc37.8 hip3.8 1.35 0.132
+Weapon (45, Rifle)
+{
+	Weight 3400 //3100
+  	Price 4149 //3100
+	ResourceId 3957
+	ShotEffectId 3964 //5599
+
+	// logic:
+	Damage 27 //30
+	BestRange 44.0 //29.0
+	StanceFactor 0 0.89 //0.9
+	StanceFactor 1 0.79 //0.95
+	StanceFactor 2 0.29 //0.6
+	StanceFactor 3 0.75 //0.9
+	ClipSize 20 //30
+	Ammunition 5_56mm
+	Quality 800 //500
+	RPM 260 //425
+  GunType SniperRifle
+	Icon 0 672 200 112 40
+	Picture 0 0 4 3
+	
+	AnchorPoint 0.0 0.55 0.0 //0.0 1.0 0.0
+	
+	Deliverable
+}
+
+// VSS VINTOREZ acc33.5 hip3.8 1.16 0.130
+Weapon (32, Rifle)
+{
+	Weight 2850
+  	Price 5399 //5000
+	ResourceId 3126
+	ShotEffectId 3983
+
+	// logic:
+	Damage 34 //35
+	BestRange 37.0 //42.0
+	StanceFactor 0 0.93 //0.7
+	StanceFactor 1 0.91 //0.9
+	StanceFactor 2 0.35 //0.1
+	StanceFactor 3 0.90 //0.8
+	Burst 2
+	ClipSize 20
+	GunType SniperRifle
+	Ammunition Cst0 //9_mm
+	Quality 700
+	RPM 320 //400
+	
+	Icon 0 112 0 112 40
+	Picture 0 0 0 3
+	
+	AnchorPoint 0.0 1.0 -0.2
+	
+	Deliverable
+}
+
+// DRAGUNOV SVD acc48.8 hip3.4 1.72 0.116
+Weapon (21, Rifle)
+{
+	Weight 4310
+  	Price 5399 //6800
+	ResourceId 3012
+	ShotEffectId 3976
+
+	// logic:
+	Damage 37 //36
+	BestRange 70.0 //80.0
+	StanceFactor 0 0.70 //0.6
+	StanceFactor 1 0.60 //0.6
+	StanceFactor 2 0.15 //0.2
+	StanceFactor 3 0.51 //0.6
+	ClipSize 20
+	GunType SniperRifle
+	Ammunition 7_62mm_Nato //7_62mm
+	Quality 900 //1200
+	RPM 110 //80
+	
+	Icon 0 448 120 112 40
+	Picture 1 6 1 3
+	
+	AnchorPoint 0.0 1.1 -0.5 //0.0 1.1 -0.3
+	
+	Deliverable
+}
+
+// M14EBR 1.65 0.118
+Weapon (31, Rifle)
+{
+	Weight 5100
+  	Price 7199 //5600
+	ResourceId 3558
+	ShotEffectId 3982
+
+	// logic:
+	Damage 35 //33
+	BestRange 60.0 //50.0
+	StanceFactor 0 0.80 //0.87
+	StanceFactor 1 0.70 //0.7
+	StanceFactor 2 0.19 //0.35
+	StanceFactor 3 0.64 //0.8
+	Burst 2
+	ClipSize 20
+	Ammunition 7_62mm_Nato
+	Quality 850 //990
+	RPM 150 //175
+	GunType SniperRifle
+	Icon 0 448 80 112 40
+	Picture 0 6 5 3
+	
+	AnchorPoint 0.0 1.15 -0.8 //0.0 1.3 -2.9
+	
+	Deliverable
+}
+
+// PSG1 acc57.0 hip2.9 1.95 0.098
+Weapon (22, Rifle)
+{
+	Weight 8100
+  	Price 8299 //7900
+	ResourceId 3125
+	ShotEffectId 3977
+
+	// logic:
+	Damage 40 //43
+	BestRange 90.0 //95.0
+	StanceFactor 0 0.63 //0.4
+	StanceFactor 1 0.45 //0.2
+	StanceFactor 2 0.10 //0.05
+	StanceFactor 3 0.38
+	ClipSize 10
+	GunType SniperRifle
+	Ammunition 7_62mm_Nato
+	Quality 1000
+	RPM 100 //200
+	
+	Icon 0 0 0 112 40
+	Picture 0 3 6 3
+	
+	AnchorPoint 0.0 1.1 -0.3 //0.0 1.1 0.2
+	
+	Deliverable
+}
+
+// M24 acc84.0 hip3.1 2.90 0.108
+Weapon (23, Rifle)
+{
+	Weight 5490
+  	Price 6999 //9800
+	ResourceId 3505
+	ShotEffectId 3978
+
+	// logic:
+	Damage 44 //53
+	BestRange 95.0 //105.0
+	StanceFactor 0 0.88 //0.8
+	StanceFactor 1 0.58 //0.15
+	StanceFactor 2 0.10 //0.10
+	StanceFactor 3 0.32 //0.15
+	GunType SniperRifle
+	ClipSize 5
+	Ammunition 7_62mm_Nato
+	Quality 1000 //900
+	RPM 40 //30
+	
+	Icon 0 224 80 112 40
+	Picture 0 0 5 3
+	
+	AnchorPoint 0.0 1.0 -1.5 //0.0 1.0 -2.0
+	
+	Deliverable
+}
+
+// M82 M107 acc91.0 hip2.9 3.13 0.087
+Weapon (4, Rifle)
+{
+	Weight 12900
+	Price 12499 //12500
+	ResourceId 366	
+	ShotEffectId 539
+
+	// logic:
+	Damage 72 //68
+	BestRange 115.0 //110.0
+	StanceFactor 0 0.78 //0.7
+	StanceFactor 1 0.44 //0.4
+	StanceFactor 2 0.07 //0.01
+	StanceFactor 3 0.20 //0.3
+	ClipSize 10 //11
+	GunType SniperRifle
+	Ammunition 50cal
+	Quality 600
+	RPM 24 //20
+	Icon 0 672 120 112 40
+	Picture 1 0 3 3
+	
+	AnchorPoint 0.0 1.2 -0.9
+	
+	Deliverable
+}
+
+
+//=================================================================================
+//=================================================================================
+
+
+
+
+// M72 LAW 0 0
+Weapon (48, Launcher)
+{
+	Weight 2800 //3700
+  	Price 3569 //3450
+	ResourceId 3838
+	ShotEffectId 3925
+
+	// logic:
+	Damage 180 //150
+	BestRange 40.0 //100.0
+	StanceFactor 0 1
+	StanceFactor 1 0.67 //0.9
+	StanceFactor 2 0.5
+	StanceFactor 3 0.67 //0.7
+	ClipSize 1
+	Ammunition Rocket
+	Quality 100
+	RPM 65 //60
+	
+	Icon 0 448 160 112 40
+	Picture 0 0 6 3
+	
+	Deliverable
+}
+
+// M79 Grenade Launcher 0 0
+Weapon (51, Rifle)
+{
+	Weight 2700
+  	Price 3399 //3000
+	ResourceId 4155
+	ShotEffectId 5604
+
+	// logic:
+	Damage 95 //100
+  	BestRange 33.0 //30.0
+  	StanceFactor 0 0.98 //1
+	StanceFactor 1 0.90
+	StanceFactor 2 0.60 //0.7
+	StanceFactor 3 0.70
+	ClipSize 1
+	Ammunition Grenade
+	Quality 200
+	RPM 65 //60
+	
+	Icon 0 336 160 112 40
+  	Picture 0 5 0 3	
+  	DisableAttachments  
+  	Deliverable
+}
+
+// MGL Semi-Auto Grenade Launcher 0 0
+Weapon (49, Rifle)
+{
+	Weight 4500
+  	Price 11499 //14300
+	ResourceId 4051
+	ShotEffectId 5602
+
+	// logic:
+	Damage 95 //100
+  	BestRange 36.0
+  	StanceFactor 0 0.90
+	StanceFactor 1 0.75
+	StanceFactor 2 0.48
+	StanceFactor 3 0.65
+	ClipSize 6
+  	Ammunition Grenade
+	Quality 130
+	RPM 55
+	
+	Icon 0 672 160 112 40
+  	Picture 1 6 9 3	
+	
+	AnchorPoint 0.0 1.9 -0.6 //0.0 1.1 0.1
+	
+	Deliverable
+}
+
+// MGL Experimental Grenade Launcher 0 0
+Weapon (50, Rifle)
+{
+	Weight 5300
+  	Price 21999 //22000
+	ResourceId 4052
+	ShotEffectId 5603
+
+	// logic:
+	Damage 95 //100
+  	BestRange 38.0
+  	StanceFactor 0 0.84
+	StanceFactor 1 0.72
+	StanceFactor 2 0.45
+	StanceFactor 3 0.60
+	ClipSize 6
+	Burst 2
+	Ammunition Grenade
+	Quality 100
+	RPM 68
+	
+	Icon 0 784 160 112 40
+  	Picture 0 3 5 3
+
+	AnchorPoint 0.0 1.9 -0.6
+	
+}
+
+// Combat Knife 0 0
+Weapon (7, Knife)
+{
+	Weight 300 //600
+  	Price 239 //300
+	ResourceId 439	
+	// ShotEffectId 536
+
+	// logic:
+	Damage 12 //10
+	BestRange 1.5
+
+	Quality 1000
+
+    Icon 0 224 160 112 40
+    Picture 1 2 2 2
+}
+
+// Machete
+Weapon (52, Knife)
+{
+	Weight 800 //900
+  	Price 249 //100
+	ResourceId 4865	
+	// ShotEffectId 536
+
+	// logic:
+	Damage 13 //12
+	BestRange 1.5
+
+	Quality 1000
+
+    Icon 0 112 240 112 40
+    Picture 1 0 8 3
+}
+
+// Axe
+Weapon (53, Knife)
+{
+	Weight 1800
+  	Price 189 //150
+	ResourceId 4864	
+	// ShotEffectId 536
+
+	// logic:
+	Damage 15
+	BestRange 1.5
+
+	Quality 1000
+
+    Icon 0 336 240 112 40
+    Picture 1 3 8 3
+}
+
+
+
+// ------------------------------------------------------------------------------------------------------------
+// ADDON WEAPONS
+// ------------------------------------------------------------------------------------------------------------
+
+// G36C Compact acc27.5 hip4.6 0.96 0.160
+ Weapon (56, Rifle)
+ {
+	Weight 2820
+	Price 4799 //4300
+	ResourceId 5914	    
+	ShotEffectId 6802
+	
+	// logic:
+	Damage 22 //29
+	BestRange 28.0
+	StanceFactor 0 0.99 //1
+	StanceFactor 1 1.04 //0.9
+	StanceFactor 2 0.55 //0.7
+	StanceFactor 3 1.07 //0.8
+	Burst 3
+	Auto 10
+	RPM 740 //700
+	ClipSize 30
+	Ammunition 5_56mm
+	Quality 1300 //1500
+	GunType AssaultRifle
+	Icon 0 896 40 112 40
+	Picture 8 3 0 3
+
+  	Deliverable
+	AnchorPoint 0.0 1.4 -0.4 
+  }
+
+// MP7A1 acc19.3 hip5.4 0.67 0.185
+Weapon (57, HandGun)
+{
+	Weight 1900
+	Price 4799 //4300
+	ResourceId 5917	    
+	ShotEffectId 6808
+	
+	// logic:
+	Damage 22 //33
+	BestRange 23.0 //21.0
+	StanceFactor 0 0.84 //0.8
+	StanceFactor 1 0.89 //0.7
+	StanceFactor 2 0.78 //0.5
+	StanceFactor 3 0.93 //0.65
+	Burst 4 //5
+	Auto 10
+	RPM 1000 //950
+	ClipSize 40
+	Ammunition 4_7mm
+	Quality 1500
+	GunType SubMachineGun
+	Icon 0 896 240 112 40
+	Picture 8 3 2 2
+
+  	Deliverable	
+	AnchorPoint 0.0 0.5 -2.4  
+}
+
+// FN F2000 acc29.0 hip4.4 0.98 0.155
+Weapon (58, Rifle)
+{
+	Weight 3850 //3600
+	Price 4399 //5000
+	ResourceId 6061    
+	ShotEffectId 3970 //6801
+	
+	// logic:
+	Damage 22 //24
+	BestRange 32.0 //35.0
+	StanceFactor 0 0.89 //1
+	StanceFactor 1 0.92 //0.7
+	StanceFactor 2 0.47 //0.3
+	StanceFactor 3 0.96 //0.5
+	Burst 4 //6
+	RPM 720 //550
+	ClipSize 30
+	Ammunition 5_56mm
+	Quality 1100 //950
+	GunType AssaultRifle
+	Icon 0 560 240 112 40
+	Picture 8 3 1 3
+
+  	Deliverable
+	AnchorPoint 0.0 1.4 -0.0 //0.0 1.1 0.4  
+}
+
+// AN94 acc33.2 hip4.2 1.15 0.145
+Weapon (59, Rifle)
+{
+	Weight 3850
+	Price 6799 //5900
+	ResourceId 6063	
+	ShotEffectId 6800
+	
+	// logic:	
+	Damage 24 //34
+	BestRange 38.0 //40.0
+	StanceFactor 0 0.88 //0.9
+	StanceFactor 1 0.86 //0.5
+	StanceFactor 2 0.35 //0.2
+	StanceFactor 3 0.82 //0.4
+	Burst 2
+	RPM 680 //1200
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_45mm
+	Quality 900 //1000
+	
+	Icon 0 896 200 112 40
+	Picture 8 6 0 3
+
+  	Deliverable
+	AnchorPoint 0.0 0.9 -0.65 //0.0 0.9 -0.4   
+}
+
+// Kriss VECTOR acc17.9 hip5.1 0.62 0.175
+Weapon (60, Rifle)
+{
+	Weight 2600
+	Price 4499 //5900
+	ResourceId 6614	
+	ShotEffectId 6806
+	
+	// logic:	
+	Damage 34 //32
+	BestRange 17.0 //17
+	StanceFactor 0 1.05 //0.9
+	StanceFactor 1 1.12 //1
+	StanceFactor 2 1.00 //0.8
+	StanceFactor 3 1.17 //1
+	Burst 5 //6
+	RPM 1050 //1500
+	ClipSize 30
+	GunType SubMachineGun
+	Ammunition 45cal
+	Quality 1000 //1100
+	
+	Icon 0 456 240 112 40
+	Picture 8 0 1 3
+
+  	Deliverable	
+	AnchorPoint 0.0 0.40 -0.75 //0.0 0.8 0.0 
+}
+
+// AMP DSR-50 (ARES) acc78.0 hip3.4 2.70 0.118
+Weapon (61, Rifle)
+{
+	Weight 8200
+	Price 14399 //13000
+	ResourceId 6613	
+	ShotEffectId 6810
+	
+	// logic:	
+	Damage 70 //75
+	BestRange 90.0 //105.0
+	StanceFactor 0 0.86 //0.5
+	StanceFactor 1 0.60 //0.35
+	StanceFactor 2 0.12 //0.01
+	StanceFactor 3 0.30 //0.2
+	RPM 28 //20
+	ClipSize 4
+	GunType SniperRifle
+	Ammunition 50cal
+	Quality 750 //710
+	
+	Icon 0 672 240 112 40
+	Picture 8 6 1 3
+
+  	Deliverable
+	AnchorPoint 0.0 1.2 -0.2 //0.0 1.2 0.0 
+}
+
+// Sentinel Striker acc13.6 hip3.7 0.50(+0.45) 0.130(+0.045)
+Weapon (62, Rifle)
+{
+	Weight 4200
+	Price 3299 //3875
+	ResourceId 6612
+	ShotEffectId 6803
+	
+	// logic:	
+	Damage 67 //58
+	BestRange 16.0 //23
+	StanceFactor 0 0.90 //1
+	StanceFactor 1 0.93 //0.9
+	StanceFactor 2 0.82 //0.75
+	StanceFactor 3 0.93 //0.8
+  	RPM 500 //450
+  	//Burst 3 //4
+  	Spread 5.8 //9
+	ClipSize 12 //24
+	GunType Shotgun
+	Ammunition 120cal
+	Quality 750
+	
+	Icon 0 784 240 112 40
+	Picture 8 0 2 3
+
+  	Deliverable	
+	AnchorPoint 0.0 1.0 -0.2    
+}
+
+// HK M27 acc27.8 hip4.0 0.96 0.138
+Weapon (64, Rifle)
+{
+	Weight 3600
+	Price 6799 //5650
+	ResourceId 6142
+	ShotEffectId 6804
+	
+	// logic:	
+	Damage 22 //22
+	BestRange 37.0
+	StanceFactor 0 0.75 //0.6
+	StanceFactor 1 0.69 //0.6
+	StanceFactor 2 0.36 //0.75
+	StanceFactor 3 0.63 //0.7
+  	RPM 760 //800
+  	Burst 5 //6
+	ClipSize 50 //150
+	GunType MachineGun
+	Ammunition 5_56mm
+	Quality 1300
+	
+	Icon 0 112 800 112 40
+	Picture 8 7 2 3
+
+  	Deliverable
+	AnchorPoint 0.0 1.0 0.0    
+}
+
+// M1911 acc16.8 hip5.1 0.62 0.175
+Weapon (65, HandGun)
+{
+	Weight 1105
+	Price 1499 //1400
+	ResourceId 6611	
+	ShotEffectId 6809
+	
+	// logic:	
+	Damage 34 //33
+	BestRange 17.0
+	StanceFactor 0 1.07 //1
+	StanceFactor 1 1.13 //1
+	StanceFactor 2 1.00 //0.8
+	StanceFactor 3 1.17 //0.9
+  	RPM 630
+	ClipSize 8 //9
+	GunType Handgun
+	Ammunition 45cal
+	Quality 1000
+	
+	Icon 0 224 800 112 40
+	Picture 8 0 3 2
+
+  	Deliverable	
+	AnchorPoint 0.0 0.8 -2.3    // not final
+}
+
+// KBP 9A-91 acc18.4 hip5.0 0.70 0.166
+Weapon (74, Rifle)
+{
+	Weight 2350 //2100
+	Price  2949 //3000
+	ResourceId 6255
+	ShotEffectId 6807
+	
+	// logic:	
+	Damage 29 //33
+	BestRange 24.0 //15.0
+	StanceFactor 0 0.85 //0.9
+	StanceFactor 1 0.87 //0.8
+	StanceFactor 2 0.66 //0.7
+	StanceFactor 3 0.90 //1.0
+  	RPM 760 //600
+  	Burst 4
+	ClipSize 20
+	GunType SubMachineGun
+	Ammunition Cst0 //9_mm
+	Quality 800
+	
+	Icon 0 784 800 112 40
+	Picture 8 6 4 3
+
+  	Deliverable
+	AnchorPoint 0.0 0.8 -0.5    
+}
+
+// SCORPION EVO 3 acc18.4 hip5.1 0.64 0.178
+Weapon (75, Rifle)
+{
+	Weight 2600
+	Price 3799 //3100
+	ResourceId 6229
+	ShotEffectId 6805
+	
+	// logic:	
+	Damage 28 //26
+	BestRange 19.0 //19.0
+	StanceFactor 0 0.97 //0.7
+	StanceFactor 1 1.01 //0.8
+	StanceFactor 2 0.90 //0.96
+	StanceFactor 3 1.06 //0.94
+  	RPM 1050 //1100
+  	Burst 5 //5
+	ClipSize 30 //20
+	GunType SubMachineGun
+	Ammunition 9_mm
+	Quality 1300 //1800
+	
+	Icon 0 896 800 112 40
+	Picture 8 0 5 3
+
+  	Deliverable	
+	AnchorPoint 0.0 1.2 -0.32 //0.0 1.0 0.0
+}
+
+// Scimitar
+Weapon (76, Knife)
+{
+	Weight 1800
+  	Price 899 //1000
+	ResourceId 6791
+	// ShotEffectId 536
+
+	// logic:
+	Damage 20
+	BestRange 1.5
+
+	Quality 1000
+
+    Icon 0  0 840 112 40
+    Picture 8 3 5 3
+}
+
+
+
+
+// ------------------------------------------------------------------------------------------------------------
+// ATTACHMENTS
+// ------------------------------------------------------------------------------------------------------------
+
+// silencer
+Attachment (90, HandGun)
+{
+	Weight 250
+	Price 599 //650
+	ResourceId 4461
+	ShotEffectId 4479
+	Icon 0 168 320 56 40
+	Picture 0 9 5 1	
+
+	// logic:
+  	Silencing 95
+	
+	Deliverable
+}
+
+// 12 scope
+Attachment (95, Rifle)
+{
+	Weight 480 //450
+	Price  3949 //3900
+	ResourceId 4463
+	Icon 0 112 320 56 40
+	Picture 0 6 3 2	
+
+	// logic:
+	Accuracy 28 //35
+	
+	Deliverable
+}
+
+// 4 Scope
+Attachment (96, Rifle)
+{
+	Weight 320 //120
+	Price 2899 //3100
+	ResourceId 4469
+	Icon 0 56 320 56 40
+	Picture 0 9 2 1	
+
+	// logic:
+	Accuracy 22 //25
+	
+	Deliverable
+}
+
+// eotech scope
+Attachment (97, Rifle)
+{
+	Weight 340 //240
+	Price 2999 //2800
+	ResourceId 4462
+	Icon 0 0 320 56 40
+	Picture 0 9 6 1	
+
+	// logic:
+	Aimtime 20 //25
+	
+	Deliverable
+}
+
+// red dot scope
+Attachment (98, Rifle)
+{
+	Weight 200 //240
+	Price 1899 //2400
+	ResourceId 4462
+	Icon 0 336 320 56 40
+	Picture 0 9 4 1	
+
+	// logic:
+  	Aimtime 16 //15
+	
+	Deliverable
+}
+
+//////////////////////////////////new///////////////////////////
+
+
+// AK-74M 1.05 0.145
+Weapon (7001, Rifle)
+{
+	Weight 3400
+  	Price 3999
+	ResourceId 2991
+	ShotEffectId 340 //3981
+
+	// logic:
+	Damage 23
+	BestRange 37.0 
+	StanceFactor 0 0.82 
+	StanceFactor 1 0.86
+	StanceFactor 2 0.38 
+	StanceFactor 3 0.85 
+	Burst 3
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_45mm
+	Quality 1100
+	RPM 640
+	
+	Icon 0 223 842 112 40
+	Picture 8 7 7 3 //1 6 4 3
+
+	Deliverable	
+	AnchorPoint 0.0 1.2 -0.5
+}
+
+// HK G36V 1.15 0.150
+ Weapon (7002, Rifle)
+ {
+	Weight 3350
+	Price 5599
+	ResourceId 5914	    
+	ShotEffectId 3970 //6802
+	
+	// logic:
+	Damage 23
+	BestRange 37.0
+	StanceFactor 0 0.89
+	StanceFactor 1 0.91
+	StanceFactor 2 0.39
+	StanceFactor 3 0.89
+	Burst 3
+	RPM 640
+	ClipSize 30
+	Ammunition 5_56mm
+	Quality 1200
+	GunType AssaultRifle
+	Icon 0 111 842 112 40 //0 896 40 112 40
+	Picture 8 4 7 3 //8 3 0 3
+
+  	Deliverable
+	AnchorPoint 0.0 1.4 -0.4 
+  }
+
+// KBP PP-2000 0.68 0.193
+Weapon (7004, HandGun)
+{
+ 	Weight 1500
+	Price 3199
+  	ResourceId 3462
+ 	ShotEffectId 3972
+	
+	// logic:	
+	Damage 29 //30
+	BestRange 19.0
+	StanceFactor 0 1.04
+	StanceFactor 1 1.10
+	StanceFactor 2 0.98
+	StanceFactor 3 1.15
+  	RPM 850 //860
+  	Burst 4
+	ClipSize 20
+	GunType SubMachineGun
+ 	Ammunition 9_mm
+	Quality 950
+	
+	Icon 0  0 800 112 40
+	Picture 8 5 2 2
+
+  	Deliverable	
+	AnchorPoint 0.0 0.7 -2.9
+}
+
+// HK G3SG/1 (DMR) 1.65 0.110
+Weapon (7005, Rifle)
+{
+	Weight 5500
+  	Price 6599
+	ResourceId 3127
+	ShotEffectId 3968
+
+	// logic:
+	Damage 36
+	BestRange 65.0
+	StanceFactor 0 0.74
+	StanceFactor 1 0.60
+	StanceFactor 2 0.17
+	StanceFactor 3 0.55
+	RPM 130
+	ClipSize 20
+	GunType SniperRifle
+	Ammunition 7_62mm_Nato
+	Quality 1000
+	
+	Icon 0 336 840 112 40
+	Picture 8 7 8 3
+
+	Deliverable
+	AnchorPoint 0.0 1.2 -0.5
+}
+
+// Glock 21C 0.58 0.174
+Weapon (7006, HandGun)
+{
+	Weight 840
+  	Price 1849
+	ResourceId 4289	
+	ShotEffectId 3963
+
+	// logic:
+	Damage 33 //31
+	BestRange 17.0
+	StanceFactor 0 0.99
+	StanceFactor 1 1.05
+	StanceFactor 2 0.99
+	StanceFactor 3 1.10
+	ClipSize 13
+	GunType Handgun
+	Ammunition 45cal
+	Quality 750
+	RPM 670
+
+	Icon 0 448 840 112 40
+	Picture 8 0 8 2
+
+	Deliverable
+	AnchorPoint 0.0 0.5 -1.9
+}
+
+// Kriss VECTOR CRB 0.64 0.180
+Weapon (7007, Rifle)
+{
+	Weight 2650
+	Price 3099
+	ResourceId 6614	
+	ShotEffectId 6806
+	
+	// logic:	
+	Damage 34 //32
+	BestRange 17.0 
+	StanceFactor 0 1.05
+	StanceFactor 1 1.12 
+	StanceFactor 2 1.00
+	StanceFactor 3 1.17
+	RPM 960
+	ClipSize 13
+	GunType SubMachineGun
+	Ammunition 45cal
+	Quality 850
+	
+	Icon 0 456 240 112 40
+	Picture 8 0 1 3
+
+  	Deliverable	
+	AnchorPoint 0.0 0.40 -0.75 //0.0 0.8 0.0 
+}
+
+// MAC-10 9mm 0.60 0.180
+Weapon (7008, HandGun)
+{
+	Weight 2840
+  	Price 2299
+	ResourceId 3426
+	ShotEffectId 5605 //5606
+	
+	// logic:	
+	Damage 27
+	BestRange 19.0
+	StanceFactor 0 0.92
+	StanceFactor 1 1.00
+	StanceFactor 2 0.90
+	StanceFactor 3 1.06
+	Burst 5
+	ClipSize 32
+	Ammunition 9_mm
+	Quality 750
+	RPM 940
+	GunType SubmachineGun
+	Icon 0 0 80 112 40
+	Picture 0 8 3 2
+
+	Deliverable
+	AnchorPoint 0.0 0.5 -1.6
+}
+
+// FN FS2000 (semi) 0.98 0.155
+Weapon (7009, Rifle)
+{
+	Weight 3700
+	Price 3699
+	ResourceId 6061    
+	ShotEffectId 3970 //6801
+	
+	// logic:
+	Damage 22
+	BestRange 32.0
+	StanceFactor 0 0.89 //1
+	StanceFactor 1 0.92 //0.7
+	StanceFactor 2 0.47 //0.3
+	StanceFactor 3 0.96 //0.5
+	RPM 740
+	ClipSize 30
+	Ammunition 5_56mm
+	Quality 1000
+	GunType AssaultRifle
+	Icon 0 560 836 112 40
+	Picture 8 4 8 3 //8 3 1 3
+
+  	Deliverable
+	AnchorPoint 0.0 1.4 -0.0 //0.0 1.1 0.4
+}
+
+// SW Model 66 acc17.0 hip5.4 0.63 0.186
+Weapon (7010, HandGun)
+{
+	Weight 1040
+  	Price 949
+	ResourceId 4161	
+	ShotEffectId 5609 //5608
+
+	// logic:
+	Damage 27
+	BestRange 18.0
+	StanceFactor 0 1.03
+	StanceFactor 1 1.11 
+	StanceFactor 2 1.00 
+	StanceFactor 3 1.20
+	ClipSize 6
+	Ammunition 38cal //+P
+	Quality 850
+	RPM 740
+  	GunType Handgun
+	Icon 0 670 840 112 40
+	Picture 8 2 8 2
+
+	DisableAttachments
+
+	Deliverable
+	AnchorPoint 0.0 0.5 -1.9
+}
+
+// FN SLP MK1 (Choke) 0.60(+0.22) 0.140(+0.024)
+Weapon (7003, Rifle)
+{
+
+	Weight 3950
+  	Price 3299
+	ResourceId 3361
+	ShotEffectId 3975
+
+	// logic:
+	Damage 74
+	BestRange 18.0
+	StanceFactor 0 0.97
+	StanceFactor 1 0.96
+	StanceFactor 2 0.74
+	StanceFactor 3 0.98
+	Spread 3.0
+	ClipSize 7
+	GunType Shotgun
+	Ammunition 120cal
+	Quality 850
+	RPM 380
+	
+	Icon 0 0 120 112 40
+	Picture 0 2 9 3
+
+	Deliverable
+	AnchorPoint 0.0 0.8 -0.8
+}
+
+// FN SLP MK1 (Slug) 0.75 0.135
+Weapon (7011, Rifle)
+{
+
+	Weight 3950
+  	Price 3399
+	ResourceId 3361
+	ShotEffectId 3975
+
+	// logic:
+	Damage 55
+	BestRange 26.0
+	StanceFactor 0 0.84
+	StanceFactor 1 0.83
+	StanceFactor 2 0.50
+	StanceFactor 3 0.80
+	Spread 0.03
+	ClipSize 7
+	GunType Shotgun
+	Ammunition 120cal
+	Quality 850
+	RPM 360
+	
+	Icon 0 0 120 112 40
+	Picture 0 2 9 3
+
+	Deliverable
+	AnchorPoint 0.0 0.8 -0.8
+}
+
+// FAMAS G2 1.04 0.152
+Weapon (7012, Rifle)
+{
+	Weight 3800
+  	Price 4499
+	ResourceId 3431
+	ShotEffectId 3966
+
+	// logic:
+	Damage 22
+	BestRange 34.0 //23.0
+	StanceFactor 0 0.89
+	StanceFactor 1 0.85
+	StanceFactor 2 0.43
+	StanceFactor 3 0.84
+	Burst 3
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 800
+	RPM 700
+	
+	Icon 0 784 840 112 40
+	Picture 8 7 9 3
+	
+	AnchorPoint 0.0 0.9 0.2
+	
+	Deliverable
+}
+
+// Steyr AUG A2 acc36.0 hip4.2 1.08 0.153
+Weapon (7013, Rifle)
+{
+	Weight 3480
+  	Price 4599 //5900
+	ResourceId 3203
+	ShotEffectId 3970
+
+	// logic:
+	Damage 23
+	BestRange 38.0
+	StanceFactor 0 0.82 //0.65
+	StanceFactor 1 0.80 //0.55
+	StanceFactor 2 0.39 //0.2
+	StanceFactor 3 0.80 //0.5
+	Burst 3
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 900
+	RPM 640
+	
+	Icon 0 784 120 112 40
+	Picture 0 3 2 3
+	
+	AnchorPoint 0.0 1.3 0.6
+	
+	Deliverable
+}
+
+// SIG 551 SB acc27.3 hip4.8 1.04 0.153
+Weapon (7014, Rifle)
+{
+	Weight 3400
+  	Price 4399
+	ResourceId 3329
+	ShotEffectId 340 //3969
+
+	// logic:
+	Damage 22
+	BestRange 33.0
+	StanceFactor 0 0.92 //1
+	StanceFactor 1 0.92 //0.95
+	StanceFactor 2 0.45 //0.75
+	StanceFactor 3 0.90 //0.9
+	Burst 3
+	Auto 30
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 5_56mm
+	Quality 1500
+	RPM 700
+	
+	Icon 0 896 880 112 40
+	Picture 8 1 9 3
+	
+	AnchorPoint 0.0 1.0 -0.3
+	
+	Deliverable
+}
+
+// M16 DMR 1.52 0.127
+Weapon (7015, Rifle)
+{
+	Weight 4650
+  	Price 5899
+	ResourceId 438	
+	ShotEffectId 3964 //537
+
+	// logic:
+	Damage 27
+	BestRange 47.0
+	StanceFactor 0 0.94
+	StanceFactor 1 0.82
+	StanceFactor 2 0.26 
+	StanceFactor 3 0.78
+	ClipSize 20
+	GunType SniperRifle
+	Ammunition 5_56mm
+	RPM 270
+	Quality 700
+	
+	Icon 0 784 882 112 40
+	Picture 9 7 9 3
+	
+	AnchorPoint 0.0 1.1 -0.2 //0.0 1.0 0.0
+	
+	Deliverable
+}
+
+// AK-103 1.02 0.145
+Weapon (7016, Rifle)
+{
+	Weight 3450
+  	Price 4099
+	ResourceId 2991
+	ShotEffectId 3981
+
+	// logic:
+	Damage 27
+	BestRange 35.0 
+	StanceFactor 0 0.86
+	StanceFactor 1 0.84
+	StanceFactor 2 0.40
+	StanceFactor 3 0.82 
+	Burst 3
+	ClipSize 30
+	GunType AssaultRifle
+	Ammunition 7_62mm
+	Quality 1100
+	RPM 520
+	
+	Icon 0 112 960 112 40 //0 672 880 112 40
+	Picture 9 7 3 3 //9 4 9 3
+
+	Deliverable	
+	AnchorPoint 0.0 1.2 -0.5
+}
+
+// AK-74M DMR 1.40 0.132
+Weapon (7017, Rifle)
+{
+	Weight 4350
+  	Price 5299
+	ResourceId 2991
+	ShotEffectId 340 //3981
+
+	// logic:
+	Damage 27
+	BestRange 45.0 
+	StanceFactor 0 0.90
+	StanceFactor 1 0.82
+	StanceFactor 2 0.28 
+	StanceFactor 3 0.79 
+	ClipSize 30
+	GunType SniperRifle
+	Ammunition 5_45mm
+	Quality 1000
+	RPM 290
+	
+	Icon 0 560 880 112 40
+	Picture 9 1 9 3
+
+	Deliverable	
+	AnchorPoint 0.0 1.2 -0.5
+}
+
+// RPK 7.62 1959 0.84 0.123
+Weapon (7018, Rifle)
+{
+	Weight 4800
+  	Price 3989
+	ResourceId 2993
+	ShotEffectId 3974 //5595
+
+	// logic:
+	Damage 27 //33
+	BestRange 37.0 //49.0
+	StanceFactor 0 0.66 //0.55
+	StanceFactor 1 0.52 //0.3
+	StanceFactor 2 0.32 //0.1
+	StanceFactor 3 0.37 //0.25
+	Burst 5
+	ClipSize 40
+	GunType MachineGun
+	Ammunition 7_62mm
+	Quality 1300
+	RPM 600
+	
+	Icon 0 448 880 112 40 //0 224 40 112 40
+	Picture 9 7 8 3 //0 3 4 3
+	
+	
+	AnchorPoint 0.0 1.15 -0.35 //0.0 1.2 -0.2
+	
+	Deliverable
+}
+
+// Mini-30 1.04 0.140
+Weapon (7019, Rifle)
+{
+	Weight 3200
+  	Price 3749
+	ResourceId 3957
+	ShotEffectId 3981
+
+	// logic:
+	Damage 27
+	BestRange 34.0
+	StanceFactor 0 0.89 //0.9
+	StanceFactor 1 0.85 //0.95
+	StanceFactor 2 0.40 //0.6
+	StanceFactor 3 0.81 //0.9
+	Burst 3
+	ClipSize 20
+	Ammunition 7_62mm
+	Quality 750
+	RPM 460
+  	GunType AssaultRifle
+	Icon 0 336 880 112 40 //0 672 200 112 40
+	Picture 9 4 8 3 //0 0 4 3
+	
+	AnchorPoint 0.0 0.55 0.0 //0.0 1.0 0.0
+	
+	Deliverable
+}
+
+// SCAR-H CQC 1.00 0.147
+Weapon (7020, Rifle)
+{
+	Weight 3480
+	Price 5649
+	ResourceId 191	
+	ShotEffectId 538
+
+	// logic:
+	Damage 29
+	BestRange 35.0
+	StanceFactor 0 0.82 
+	StanceFactor 1 0.82
+	StanceFactor 2 0.40
+	StanceFactor 3 0.80
+	Burst 3
+	ClipSize 20
+	GunType AssaultRifle
+	Ammunition 7_62mm_Nato
+	Quality 1000
+	RPM 450
+
+	Icon 0 228 880 112 40 //0 112 40 112 40
+	Picture 9 1 8 3 //0 5 9 3
+	
+	AnchorPoint 0.0 1.2 -0.05
+	
+	Deliverable
+}
+
+// AK-47 DMR 1.23 0.128
+Weapon (7021, Rifle)
+{
+	Weight 4900
+	Price 4099
+	ResourceId 271	
+	ShotEffectId 3981
+	
+	// logic:	
+	Damage 29
+	BestRange 41.0
+	StanceFactor 0 0.87
+	StanceFactor 1 0.81
+	StanceFactor 2 0.30
+	StanceFactor 3 0.77
+	RPM 260
+	ClipSize 30
+	GunType SniperRifle
+	Ammunition 7_62mm
+	Quality 1200
+	
+	Icon 0 112 880 112 40 //0 112 160 112 40
+	Picture 9 7 7 3 //1 3 4 3
+	
+	AnchorPoint 0.0 1.1 -0.4 //0.0 1.1 0.1
+	
+	Deliverable
+}
+
+// Ruger M77/357 1.30 0.130
+Weapon (7022, Rifle)
+{
+	Weight 2800
+  	Price 2599
+	ResourceId 3505
+	ShotEffectId 3978 //5615 //3978
+
+	// logic:
+	Damage 36
+	BestRange 32.0
+	StanceFactor 0 1.19
+	StanceFactor 1 1.06
+	StanceFactor 2 0.39
+	StanceFactor 3 0.98
+	GunType SniperRifle
+	ClipSize 6
+	Ammunition 357cal
+	Quality 600
+	RPM 120
+	
+	Icon 0 0 880 112 40 //0 224 80 112 40
+	Picture 9 4 7 3 //0 0 5 3
+	
+	AnchorPoint 0.0 1.0 -1.5
+	
+	Deliverable
+}
+
+// Marlin 1894C (1979) 0.86 0.140
+Weapon (7023, Rifle)
+{
+	Weight 2730
+  	Price 2299
+	ResourceId 3646
+	ShotEffectId 537 //5615
+
+	// logic:
+	Damage 33
+	BestRange 28.0
+	StanceFactor 0 0.89
+	StanceFactor 1 0.91
+	StanceFactor 2 0.48
+	StanceFactor 3 0.89
+	GunType AssaultRifle
+	ClipSize 10
+	Ammunition 357cal
+	Quality 500
+	RPM 300
+	
+	Icon 0 0 920 112 40 //0 112 80 112 40
+	Picture 9 1 7 3
+    	
+	AnchorPoint 0.0 0.7 -0.45
+	
+	Deliverable
+}
+
+// Zastava M57A (Yugoslavian) 0.64 0.180
+Weapon (7024, HandGun)
+{
+	Weight 910
+	Price 799
+	ResourceId 6611	
+	ShotEffectId 5609 //6809
+	
+	// logic:	
+	Damage 25
+	BestRange 20.0
+	StanceFactor 0 0.93
+	StanceFactor 1 1.01
+	StanceFactor 2 0.87
+	StanceFactor 3 1.06
+  	RPM 660
+	ClipSize 9
+	GunType Handgun
+	Ammunition Cst1
+	Quality 500
+	
+	Icon 0 0 960 112 40 //0 224 800 112 40
+	Picture 9 2 6 2
+
+  	Deliverable	
+	AnchorPoint 0.0 0.8 -2.3
+	DisableAttachments
+}
+
+// Steyr AUG SMG 0.77 0.160
+Weapon (7025, Rifle)
+{
+	Weight 3520
+  	Price 4499
+	ResourceId 3203
+	ShotEffectId 3972 //3980 thompson
+
+	// logic:
+	Damage 29
+	BestRange 22.0
+	StanceFactor 0 1.02
+	StanceFactor 1 1.04
+	StanceFactor 2 0.70
+	StanceFactor 3 1.07
+	Burst 4
+	ClipSize 25
+	GunType SubmachineGun
+	Ammunition 9_mm
+	Quality 1000
+	RPM 820
+	
+	Icon 0 672 920 112 40 //0 784 120 112 40
+	Picture 9 4 6 3
+	
+	AnchorPoint 0.0 1.3 0.6
+	
+	Deliverable
+}
+
+// AS Val 9x39mm 0.87 0.145
+Weapon (7026, Rifle)
+{
+	Weight 2960
+  	Price 5199
+	ResourceId 3126
+	ShotEffectId 3983
+
+	// logic:
+	Damage 31
+	BestRange 31.0
+	StanceFactor 0 0.82
+	StanceFactor 1 0.84
+	StanceFactor 2 0.45
+	StanceFactor 3 0.83
+	Burst 3
+	ClipSize 20
+	GunType AssaultRifle
+	Ammunition Cst0
+	Quality 800
+	RPM 700
+	
+	Icon 0 784 920 112 40 //0 112 0 112 40
+	Picture 9 7 6 3
+	
+	AnchorPoint 0.0 1.0 -0.2
+	
+	Deliverable
+}
+
+// OTs-12 9x39mm (rare AKS-74U conversion) 0.74 0.160
+Weapon (7027, Rifle)
+{
+	Weight 2600
+  	Price 4699
+	ResourceId 2992
+	ShotEffectId 5597
+	
+	// logic:	
+	Damage 29
+	BestRange 26.0
+	StanceFactor 0 0.83
+	StanceFactor 1 0.86
+	StanceFactor 2 0.59
+	StanceFactor 3 0.90
+	Burst 4
+	ClipSize 25
+	GunType SubmachineGun
+	Ammunition Cst0
+	Quality 1000
+	RPM  780
+	
+	Icon 0 896 920 112 40 //0 896 120 112 40
+	Picture 9 7 5 3
+	
+	AnchorPoint 0.0 1.2 -0.4
+	
+	Deliverable
+	
+}
+
+// SCAR-L CQC mod (6.8) 0.97 0.158
+Weapon (7028, Rifle)
+{
+	Weight 3450
+	Price 6899
+	ResourceId 6071	
+	ShotEffectId 538
+
+	// logic:
+	Damage 27
+	BestRange 33.0
+	StanceFactor 0 0.85
+	StanceFactor 1 0.84
+	StanceFactor 2 0.46
+	StanceFactor 3 0.82
+	Burst 3
+	RPM 580 //740
+	ClipSize 25
+	GunType AssaultRifle
+	Ammunition Cst2
+	Quality 950
+	
+	Icon 0 112 920 112 40 //0 448 800 112 40
+	Picture 9 4 5 3
+
+	Deliverable	
+	AnchorPoint 0.0 0.95 -0.05
+}
+
+// M4A1 mod (6.8) fwd grip 1.07 0.148
+Weapon (7029, Rifle)
+{
+	Weight 3700
+	Price 7199
+	ResourceId 190	
+	ShotEffectId 536
+	
+	// logic:
+	Damage 28
+	BestRange 38.0
+	StanceFactor 0 0.82
+	StanceFactor 1 0.79
+	StanceFactor 2 0.37
+	StanceFactor 3 0.78
+	Burst 3
+	RPM 520 //680
+	ClipSize 25
+	GunType AssaultRifle
+	Ammunition Cst2
+	Quality 900
+	
+	Icon 0 224 920 112 40 //0 560 80 112 40
+	Picture 9 1 5 3
+	
+	AnchorPoint 0.0 1.1 -0.2
+	
+	Deliverable
+}
+
+// M16 DMR mod (6.8) 1.58 0.120
+Weapon (7030, Rifle)
+{
+	Weight 4800
+  	Price 7899
+	ResourceId 438	
+	ShotEffectId 5599 //3964
+
+	// logic:
+	Damage 32
+	BestRange 52.0
+	StanceFactor 0 0.88
+	StanceFactor 1 0.75
+	StanceFactor 2 0.22 
+	StanceFactor 3 0.65
+	ClipSize 17 //20
+	GunType SniperRifle
+	Ammunition Cst2
+	RPM 210
+	Quality 800
+	
+	Icon 0 336 920 112 40 //0 784 882 112 40
+	Picture 9 7 4 3
+	
+	AnchorPoint 0.0 1.1 -0.2
+	
+	Deliverable
+}
+
+// G36 Compact mod (6.8) 0.95 0.160
+ Weapon (7031, Rifle)
+ {
+	Weight 2950
+	Price 7399
+	ResourceId 5914	    
+	ShotEffectId 536 //6802
+	
+	// logic:
+	Damage 27 //22
+	BestRange 31.0
+	StanceFactor 0 0.89
+	StanceFactor 1 0.92
+	StanceFactor 2 0.50
+	StanceFactor 3 0.92
+	Burst 3
+	RPM 620 //740
+	ClipSize 25
+	Ammunition Cst2
+	Quality 1100
+	GunType AssaultRifle
+	Icon 0 448 920 112 40 //0 896 40 112 40
+	Picture 9 1 4 3
+
+  	Deliverable
+	AnchorPoint 0.0 1.4 -0.4 
+  }
+
+// HK53A2 mod (6.8) 0.82 0.168
+Weapon (7032, Rifle)
+{
+	Weight 3120
+	Price 6699
+	ResourceId 2987	
+	ShotEffectId 536 //3965
+
+	// logic:
+	Damage 27 //21
+	BestRange 29.0 //27.0
+	StanceFactor 0 0.82
+	StanceFactor 1 0.84
+	StanceFactor 2 0.56
+	StanceFactor 3 0.87
+	Burst 3
+	ClipSize 25
+        GunType SubmachineGun
+	Ammunition Cst2
+	Quality 1100
+	RPM 660 //780
+	
+	Icon 0 560 920 112 40 //0 672 40 112 40
+	Picture 9 4 4 3
+	
+	AnchorPoint 0.0 1.3 -0.1
+	Deliverable
+}
